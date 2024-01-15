@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"github.com/gorilla/mux"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -13,4 +13,3 @@ func main() {
 	r.HandleFunc("/callme/delay", PingWithRandomDelay)
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
-

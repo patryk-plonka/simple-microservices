@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net/http"
-	"math/rand"
-	"time"
 	"log"
-    "strconv"
+	"math/rand"
+	"net/http"
+	"strconv"
+	"time"
 )
 
 var version string = "1.0"
@@ -19,9 +19,9 @@ func PingHandler(w http.ResponseWriter, r *http.Request) {
 func PingWithRandomError(w http.ResponseWriter, r *http.Request) {
 	rand.Seed(time.Now().UnixNano())
 	random := rand.Intn(100)
-	if random % 2 == 0 {
+	if random%2 == 0 {
 		log.Printf("Ping with random error: name=%s, version=%s, random=%d, httpCode=504", name, version, random)
-		http.Error(w, "Random error " + strconv.Itoa(random), http.StatusGatewayTimeout)
+		http.Error(w, "Random error "+strconv.Itoa(random), http.StatusGatewayTimeout)
 	} else {
 		log.Printf("Ping with random error: name=%s, version=%s, random=%d, httpCode=200", name, version, random)
 		w.Write([]byte("Service: name=" + name + ", version=" + version))
